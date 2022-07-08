@@ -1,0 +1,66 @@
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJFbGVtZW50IEJpa2UiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY1NzEzNzQ1MSwiZXhwIjoxNjU3MTM3NDY2fQ.G-KcblUaPGwsY3OW0hyVIBDjUexKb_YHcmGmrD_Vzpk
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name": "Element Bike",
+    "email": "admin@gmail.com",
+    "password": "admin",
+    "confPassword": "admin"
+}
+
+###
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "admin@gmail.com",
+    "password" : "admin"
+}
+
+###
+GET http://localhost:5000/token
+
+
+
+###
+DELETE  http://localhost:5000/logout
+
+###
+POST http://localhost:5000/sewa
+Content-Type: application/json
+
+{
+    "durasi_waktu" : "120 Menit",
+    "harga" : "200000"
+}
+
+####
+
+GET  http://localhost:5000/sewa
+
+
+###
+POST http://localhost:5000/sewa
+Content-Type: application/json
+
+{
+    "durasi_waktu" : "120 Menit",
+    "harga" : "200000"
+}
+
+###
+POST http://localhost:5000/outlet
+Content-Type: application/json
+
+{
+    "nama_outlet" : "TMII",
+    "alamat" : "Jakarta Timur"
+}
+
+###
+GET  http://localhost:5000/outlet
