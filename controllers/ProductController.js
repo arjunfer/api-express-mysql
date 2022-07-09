@@ -1,4 +1,6 @@
 import Product from "../models/ProductModel.js";
+import path from "path";
+import fs from "fs";
 
 export const getProduct = async(req, res)=>{
     try {
@@ -25,7 +27,8 @@ export const getProductById = async(req, res)=>{
 
 export const saveProduct = (req, res)=>{
     if(req.files === null) return res.status(400).json({msg: "No File Uploaded"});
-    const name = req.body.title;
+    const name_sepeda = req.body.name_sepeda;
+    const kode_barcode = req.body.kode_barcode;
     const file = req.files.file;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
@@ -39,7 +42,7 @@ export const saveProduct = (req, res)=>{
     file.mv(`./public/images/${fileName}`, async(err)=>{
         if(err) return res.status(500).json({msg: err.message});
         try {
-            await Product.create({name: name, image: fileName, url: url});
+            await Product.create({name_sepeda: name_sepeda, kode_barcode: kode_barcode, image: fileName, url: url});
             res.status(201).json({msg: "Product Created Successfuly"});
         } catch (error) {
             console.log(error.message);
@@ -76,11 +79,12 @@ export const updateProduct = async(req, res)=>{
             if(err) return res.status(500).json({msg: err.message});
         });
     }
-    const name = req.body.title;
+    const name_sepeda = req.body.name_sepeda;
+    const kode_barcode = req.body.kode_barcode;
     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
      
     try {
-        await Product.update({name: name, image: fileName, url: url},{
+        await Product.update({name_sepeda: name_sepeda, kode_barcode: kode_barcode, image: fileName, url: url},{
             where:{
                 id: req.params.id
             }
